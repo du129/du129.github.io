@@ -1,18 +1,38 @@
-var main = function () {
+var kanye = [ ];
+var loadedIndex = 0;// horrible way of forcing a load of audio sounds
+
+// puts the audios into the queue
+function init(audios) {
     "use strict";
-    ('.icon-menu').click(function () {
-        
-        ('.menu').animate({left: '0px'}, 200);
+    for (var i = 0 ;i<audios.length;i++) {
+    var audio = new Audio(audios[i]);
+    kanye.push(audio);
+    buffer(audio);
+  }
+}
 
-        ('body').animate({left: '285px'}, 200);
-    });
-    
-    ('.icon-close').click(function () {
-    
-        ('.menu').animate({left: "-285px"}, 200);
+// enough data is available
+function buffer(audio) {
+  if(audio.readyState==4)
+      return loaded();
+  setTimeout(function(){buffer(audio)},100);
+}
 
-        ('body').animate({left: "0px"}, 200);
-    });
+// checks if queue is full
+function loaded() {
+  loadedIndex++;
+  if(kanye.length==loadedIndex)
+      playLooped();
+}
+
+// play and loop after finished
+function playLooped() {
+  var audio=Math.floor(Math.random() * (collection.length));
+  audio=collection[audio];
+  audio.play();
+  setTimeout(playLooped,audio.duration*1000);
+}
+
+init([
     
-};
-(document).ready(main);
+]);
