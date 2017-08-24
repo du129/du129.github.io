@@ -74,9 +74,12 @@ h3 {
     font-family: verdana;
     font-size: 200%;
 }
-body{
-    background-color: powderblue;
+/* Initial body */
+body {
+background-color: burlywood;
 }
+
+/* Initial menu */
 p{
     color: black;
     font-family: Courier New;
